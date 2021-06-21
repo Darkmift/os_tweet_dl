@@ -1,6 +1,9 @@
+const { fetchSystemInfo } = require('./sysInfo.service')
+
 async function getHealth(req, res, next) {
   try {
-    res.send({ req: req.params });
+    const health = await fetchSystemInfo()
+    res.send({ health });
   } catch (error) {
     next(error);
   }
