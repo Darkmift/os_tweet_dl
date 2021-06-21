@@ -1,6 +1,13 @@
+const { fetchTweets } = require('./twitter.service')
+
 async function getTweets(req, res, next) {
   try {
-    res.send({ req: req.params });
+
+    const { query } = req.params;
+
+    const tweets = await fetchTweets(query)
+
+    res.send({ tweets });
   } catch (error) {
     next(error);
   }
